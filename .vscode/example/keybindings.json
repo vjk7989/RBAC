@@ -1,0 +1,6 @@
+[
+    { "key": "alt+g", "command": "workbench.action.tasks.runTask", "args": "RBAC: Global Sync" },
+    { "key": "alt+a", "command": "workbench.action.tasks.runTask", "args": "RBAC: Add Member" },
+    { "key": "alt+l", "command": "workbench.action.tasks.runTask", "args": "RBAC: List All Members" },
+    { "key": "alt+r", "command": "workbench.action.tasks.runTask", "args": "RBAC: Remove Member" }
+]

@@ -1,0 +1,58 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "RBAC: Global Sync",
+            "type": "shell",
+            "command": "git add . && git commit -m \"${input:commitMessage}\" && git push https://github.com/ishi-gupta0711/RBAC.git main",
+            "options": {
+                "shell": { "executable": "cmd.exe", "args": ["/d", "/c"] }
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "RBAC: Add Member",
+            "type": "shell",
+            "command": "gh api -X PUT /repos/ishi-gupta0711/RBAC/collaborators/${input:username} -f permission=${input:role}",
+            "problemMatcher": []
+        },
+        {
+            "label": "RBAC: Remove Member",
+            "type": "shell",
+            "command": "gh api -X DELETE /repos/ishi-gupta0711/RBAC/collaborators/${input:username}",
+            "problemMatcher": []
+        },
+        {
+            "label": "RBAC: List All Members",
+            "type": "shell",
+            "command": "gh api /repos/ishi-gupta0711/RBAC/collaborators --jq \".[] | {username: .login, access: .role_name}\"",
+            "options": {
+                "shell": { "executable": "cmd.exe", "args": ["/d", "/c"] }
+            },
+            "problemMatcher": []
+        }
+    ],
+    "inputs": [
+        {
+            "id": "commitMessage",
+            "type": "promptString",
+            "description": "Enter your update message",
+            "default": "Update RBAC"
+        },
+        {
+            "id": "username",
+            "type": "promptString",
+            "description": "Enter GitHub Username"
+        },
+        {
+            "id": "role",
+            "type": "pickString",
+            "description": "Select Access Level",
+            "options": [
+                { "value": "admin", "label": "Admin (Full Control)" },
+                { "value": "push", "label": "Developer (Write Access)" },
+                { "value": "pull", "label": "Tester (Read Only)" }
+            ]
+        }
+    ]
+}

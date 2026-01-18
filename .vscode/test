@@ -1,0 +1,58 @@
+# 🛡️ RBAC & Automation System
+
+This repository serves as a centralized hub for project management and **Role-Based Access Control (RBAC)**. It is integrated with a custom VS Code automation suite that allows for one-touch syncing and real-time permission management via the GitHub API.
+
+
+
+## 🚀 System Features
+
+- **Global Sync:** Instantly push updates from any local project folder to this repository.
+- **Automated RBAC:** Manage team access (Admin, Developer, Tester) directly from the VS Code Command Palette.
+- **Audit Logs:** View a live list of collaborators and their specific access levels using keyboard shortcuts.
+
+---
+
+## 🔑 Defined Roles & Permissions
+
+The following RBAC structure is enforced within this system:
+
+| Role | Permission Level | Capabilities |
+| :--- | :--- | :--- |
+| **Admin** | `admin` | Full control: Can manage settings, delete the repo, and add/remove members. |
+| **Developer** | `push` | Write access: Can push code, create branches, and manage pull requests. |
+| **Reviewer** | `maintain` | Repository management: Can manage issues/PRs but cannot change security settings. |
+| **Tester** | `pull` | Read-only access: Can view and pull code for testing purposes. |
+
+
+
+---
+
+## 🛠️ Setup Instructions for VS Code
+
+To use the automation shortcuts, follow these steps:
+
+### 1. Prerequisites
+- Install [GitHub CLI](https://cli.github.com/).
+- Run `gh auth login` in your terminal to authenticate.
+- Ensure your local project is initialized with `git init`.
+
+### 2. VS Code Configuration
+Add the logic to your **User Tasks** (`tasks.json`) and **Keyboard Shortcuts** (`keybindings.json`) as detailed in the project documentation.
+
+### 3. Shortcuts Reference
+| Shortcut | Action | Description |
+| :--- | :--- | :--- |
+| `Alt + G` | **Global Sync** | Prompts for a commit message and pushes to GitHub. |
+| `Alt + A` | **Add Member** | Prompts for a username and role to grant repository access. |
+| `Alt + L` | **List Members** | Displays a live audit of all users and their roles in the terminal. |
+| `Alt + R` | **Remove Member**| Instantly revokes a user's access to the repository. |
+
+---
+
+## 📁 Project Structure
+- `.vscode/`: Contains the task automation logic.
+- `rbac/`: (Optional) Folder for storing role-specific configuration files or JSON policies.
+- `README.md`: System documentation and user guide.
+
+---
+*Maintained by [ishi-gupta0711](https://github.com/ishi-gupta0711)*
